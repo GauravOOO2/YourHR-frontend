@@ -5,9 +5,11 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'; 
 
+interface MainPageProps {
+  initialData?: any;
+}
 
-
-const MainPage: React.FC<{ initialData?: any }> = ({ initialData = {} }) => {
+const MainPage: React.FC<MainPageProps> = ({ initialData = {} }) => {
 
     const [showPopup, setShowPopup] = useState(false);
     const [username, setUsername] = useState<string>('');
@@ -448,9 +450,3 @@ const MainPage: React.FC<{ initialData?: any }> = ({ initialData = {} }) => {
 };
 
 export default MainPage;
-
-
-
-// ) : (
-//     <p>No companies available.</p>
-// )}
