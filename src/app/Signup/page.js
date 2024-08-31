@@ -19,14 +19,6 @@ export default function Signup() {
 
     const handleSubmit = async () => {
         setIsSubmitting(true);
-    
-        // Validate form fields
-        if (!username || !password) {
-            setMessage('Both username and password are necessary.');
-            setIsSubmitting(false);
-            return;
-        }
-    
         const url = process.env.NEXT_PUBLIC_SIGNUP_URL;
         const formData = new FormData();
         formData.append('username', username);
@@ -36,33 +28,28 @@ export default function Signup() {
         formData.append('projects', JSON.stringify(projects));
         formData.append('skills', JSON.stringify(skills));
         formData.append('achievements', JSON.stringify(achievements));
-    
+
         if (resume) {
             formData.append('resume', resume);
         }
-    
+
         try {
             const response = await fetch(url, {
                 method: 'POST',
                 body: formData,
             });
-    
+
             const data = await response.json();
-    
+
             if (!response.ok) {
-                // Check if the error message indicates the user already exists
-                if (data.message === "User already exists") {
-                    setMessage('User already exists. Please try logging in.');
-                } else {
-                    throw new Error('Network response was not ok: ' + JSON.stringify(data));
-                }
-            } else {
-                if (data.message === "User created successfully") {
-                    setMessage('Signup successful! Redirecting to login...');
-                    setTimeout(() => {
-                        router.push('/');
-                    }, 2000); // Redirect after 2 seconds
-                }
+                throw new Error('Network response was not ok: ' + JSON.stringify(data));
+            }
+
+            if (data.message === "User created successfully") {
+                setMessage('Signup successful! Redirecting to login...');
+                setTimeout(() => {
+                    router.push('/');
+                }, 2000); // Redirect after 2 seconds
             }
         } catch (error) {
             console.error('Error during signup:', error);
@@ -71,8 +58,6 @@ export default function Signup() {
             setIsSubmitting(false);
         }
     };
-    
-    
 
     const handleAddSkill = (e) => {
         if (e.key === 'Enter') {
