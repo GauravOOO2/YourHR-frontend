@@ -5,21 +5,21 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'; 
 
-const MainPage: React.FC = () => {
+const MainPage = () => {
 
     const [showPopup, setShowPopup] = useState(false);
-    const [username, setUsername] = useState<string>('');
+    const [username, setUsername] = useState('');
     const [educationalDetails, setEducationalDetails] = useState({ degree: '', institution: '', yearOfCompletion: '' });
     const [workExperience, setWorkExperience] = useState({ company: '', role: '', duration: '' });
     const [projects, setProjects] = useState({ title: '', description: '', link: '' });
     const [skills, setSkills] = useState([]);
     const [achievements, setAchievements] = useState('');
     const [resumeUrl, setResumeUrl] = useState('');
-    const [resume, setResume] = useState<File | null>(null);
+    const [resume, setResume] = useState(null);
     const [companies, setCompanies] = useState([]);
-    const [userData, setUserData] = useState<any>(null);
+    const [userData, setUserData] = useState(null);
     const [showEditForm, setShowEditForm] = useState(false);
-    const [editFormData, setEditFormData] = useState<any>({});
+    const [editFormData, setEditFormData] = useState({});
     const [loading, setLoading] = useState(true);
     const router = useRouter();
 
@@ -89,12 +89,12 @@ const MainPage: React.FC = () => {
 
 
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleInputChange = (e) => {
         const { name, value } = e.target;
         setEditFormData({ ...editFormData, [name]: value });
     };
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const token = localStorage.getItem('authToken');
@@ -175,9 +175,9 @@ const MainPage: React.FC = () => {
     
 
 
-    const handleAddSkill = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleAddSkill = (e) => {
         if (e.key === 'Enter') {
-            const target = e.target as HTMLInputElement;
+            const target = e.target;
             const value = target.value.trim();
             if (value && !skills.includes(value)) {
                 setSkills([...skills, value]);
@@ -186,7 +186,7 @@ const MainPage: React.FC = () => {
         }
     };
 
-    const handleRemoveSkill = (index: number) => {
+    const handleRemoveSkill = (index) => {
         setSkills(skills.filter((_, i) => i !== index));
     };
 
