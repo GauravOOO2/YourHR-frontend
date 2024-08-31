@@ -131,7 +131,6 @@ Create a .env file in the frontend directory and add the following:
 NEXT_PUBLIC_LOGIN_URL=http://localhost:5000/api/login
 NEXT_PUBLIC_SIGNUP_URL=http://localhost:5000/api/signup
 NEXT_PUBLIC_API_URL=http://localhost:5000/api
-NEXT_PUBLIC_RESUME_BASE_URL=http://localhost:5000/uploads/resumes/
 ```
 Run the Application 
 
