@@ -5,20 +5,16 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'; 
 
-interface MainPageProps {
-  initialData?: any;
-}
-
-const MainPage: React.FC<MainPageProps> = ({ initialData = {} }) => {
+const MainPage: React.FC = () => {
 
     const [showPopup, setShowPopup] = useState(false);
     const [username, setUsername] = useState<string>('');
-    const [educationalDetails, setEducationalDetails] = useState(initialData.educationalDetails || [{ degree: '', institution: '', yearOfCompletion: '' }]);
-    const [workExperience, setWorkExperience] = useState(initialData.workExperience || [{ company: '', role: '', duration: '' }]);
-    const [projects, setProjects] = useState(initialData.projects || [{ title: '', description: '', link: '' }]);
-    const [skills, setSkills] = useState(initialData.skills || []);
-    const [achievements, setAchievements] = useState(initialData.achievements || '');
-    const [resumeUrl, setResumeUrl] = useState(initialData.resumeUrl || '');
+    const [educationalDetails, setEducationalDetails] = useState({ degree: '', institution: '', yearOfCompletion: '' });
+    const [workExperience, setWorkExperience] = useState({ company: '', role: '', duration: '' });
+    const [projects, setProjects] = useState({ title: '', description: '', link: '' });
+    const [skills, setSkills] = useState([]);
+    const [achievements, setAchievements] = useState('');
+    const [resumeUrl, setResumeUrl] = useState('');
     const [resume, setResume] = useState<File | null>(null);
     const [companies, setCompanies] = useState([]);
     const [userData, setUserData] = useState<any>(null);
