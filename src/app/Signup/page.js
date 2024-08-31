@@ -61,7 +61,7 @@ export default function Signup() {
 
     const handleAddSkill = (e) => {
         if (e.key === 'Enter') {
-            const target = e.target as HTMLInputElement;
+            const target = e.target ;
             const value = target.value.trim();
             if (value && !skills.includes(value)) {
                 setSkills([...skills, value]);
