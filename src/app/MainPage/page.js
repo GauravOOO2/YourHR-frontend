@@ -391,7 +391,7 @@ const MainPage = () => {
                                     onChange={(e) => setResumeUrl(e.target.value)}
                                 /> */}
                                 {resumeUrl && (
-                                    <a href={`http://localhost:5000/${resumeUrl}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
+                                    <a href={`${process.env.NEXT_PUBLIC_API_BASE_URL}${resumeUrl}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
                                         View Current Resume
                                     </a>
                                 )}
